@@ -21,6 +21,10 @@ class DefinitionViewController: UIViewController {
     
     var vocabController: VocabularyController?
     
+    //
+    // MARK: - View LifeCycle
+    //
+    
     var vocabWord: VocabularyWord? {
         didSet {
             loadViewIfNeeded()
@@ -58,14 +62,5 @@ class DefinitionViewController: UIViewController {
         guard let vocabWord = vocabWord else { return }
         wordTextField.text = vocabWord.word
         definitionTextView.text = vocabWord.definition
-    }
-    
-    //
-    // MARK: - Navigation
-    //
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let wordsVC = segue.destination as? WordsTableViewController else { return }
-        
     }
 }
