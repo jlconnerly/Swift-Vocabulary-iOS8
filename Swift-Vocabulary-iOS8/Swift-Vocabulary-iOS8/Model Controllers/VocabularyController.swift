@@ -18,6 +18,10 @@ class VocabularyController {
                            VocabularyWord(word: "Swift", definition: "Happening quickly or promptly")]
     }
     
+    func addWord(word: VocabularyWord) {
+        vocabWords.append(word)
+    }
+    
 }
 
 

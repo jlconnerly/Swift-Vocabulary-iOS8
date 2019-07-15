@@ -15,10 +15,11 @@ class DefinitionViewController: UIViewController {
     //
     
   
-    @IBOutlet weak var wordLabel: UILabel!
+    @IBOutlet weak var wordTextField: UITextField!
     @IBOutlet weak var definitionTextView: UITextView!
+    @IBOutlet weak var saveButton: UIButton!
     
-    
+    var vocabController: VocabularyController?
     
     var vocabWord: VocabularyWord? {
         didSet {
@@ -33,18 +34,38 @@ class DefinitionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateviews()
     }
     
     
     //
-    // MARK: - Methods
+    // MARK: - IBActions & Methods
     //
+    
+
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        
+        guard let vocabController = vocabController,
+              let newWordName = wordTextField.text,
+              let newDefinition = definitionTextView.text else { return }
+        let newWord = VocabularyWord(word: newWordName, definition: newDefinition)
+        vocabController.addWord(word: newWord)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     func updateviews() {
         guard let vocabWord = vocabWord else { return }
-        
-        wordLabel.text = vocabWord.word
+        wordTextField.text = vocabWord.word
         definitionTextView.text = vocabWord.definition
+    }
+    
+    //
+    // MARK: - Navigation
+    //
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let wordsVC = segue.destination as? WordsTableViewController else { return }
+        
     }
 }

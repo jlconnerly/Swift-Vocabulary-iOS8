@@ -14,7 +14,7 @@ class WordsTableViewController: UITableViewController {
     // MARK: - IBOutlets and Properties
     //
     
-    let vocabController = VocabularyController()
+    var vocabController = VocabularyController()
     
         
     //
@@ -23,6 +23,11 @@ class WordsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        tableView.reloadData()
     }
 
     //
@@ -53,7 +58,17 @@ class WordsTableViewController: UITableViewController {
                   let indexPath = tableView.indexPathForSelectedRow else { return }
             
             detailVC.vocabWord = vocabController.vocabWords[indexPath.row]
+            detailVC.saveButton.isHidden = true
+            
+        }else if segue.identifier == "AddWordSegue" {
+            guard let addWordVC = segue.destination as? DefinitionViewController else { return }
+            
+            addWordVC.vocabController = vocabController
+            
         }
+    }
+    
+    @IBAction func unwindToWordList(_ sender: UIStoryboardSegue) {
     }
 
 }
