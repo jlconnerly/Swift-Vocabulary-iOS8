@@ -14,11 +14,15 @@ class DefinitionViewController: UIViewController {
     // MARK: - IBOutlets and Properties
     //
     
+  
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var definitionTextView: UITextView!
     
+    
+    
     var vocabWord: VocabularyWord? {
         didSet {
+            loadViewIfNeeded()
             updateviews()
         }
     }
@@ -30,7 +34,6 @@ class DefinitionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     
@@ -39,9 +42,9 @@ class DefinitionViewController: UIViewController {
     //
     
     func updateviews() {
-        if let vocabWord = vocabWord {
-            wordLabel.text = vocabWord.word
-            definitionTextView.text = vocabWord.definition
-        }
+        guard let vocabWord = vocabWord else { return }
+        
+        wordLabel.text = vocabWord.word
+        definitionTextView.text = vocabWord.definition
     }
 }

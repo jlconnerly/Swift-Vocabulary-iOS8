@@ -14,7 +14,7 @@ class WordsTableViewController: UITableViewController {
     // MARK: - IBOutlets and Properties
     //
     
-    var vocabController: VocabularyController?
+    let vocabController = VocabularyController()
     
         
     //
@@ -31,15 +31,15 @@ class WordsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return vocabController.vocabWords.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
 
-        // Configure the cell...
-
+        cell.textLabel?.text = vocabController.vocabWords[indexPath.row].word
+        
         return cell
     }
 
@@ -48,8 +48,12 @@ class WordsTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowDefinitionSegue" {
+            guard let detailVC = segue.destination as? DefinitionViewController,
+                  let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            detailVC.vocabWord = vocabController.vocabWords[indexPath.row]
+        }
     }
 
 }

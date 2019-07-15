@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vu3-g1-Vv3">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,7 +36,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="yes-Pq-IWr" kind="show" identifier="ShowDefinition" id="zc0-M6-flo"/>
+                                    <segue destination="yes-Pq-IWr" kind="show" identifier="ShowDefinitionSegue" id="zc0-M6-flo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -86,8 +86,8 @@
                         <viewLayoutGuide key="safeArea" id="rQO-VM-Vev"/>
                     </view>
                     <connections>
-                        <outlet property="definitionTextView" destination="h7J-gg-NDx" id="eRx-D6-4RR"/>
-                        <outlet property="wordLabel" destination="Jxf-kw-2Jb" id="lDo-Ea-iN8"/>
+                        <outlet property="definitionTextView" destination="h7J-gg-NDx" id="hwq-XR-xJK"/>
+                        <outlet property="wordLabel" destination="Jxf-kw-2Jb" id="Q4P-OH-Pq7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPf-46-eFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
